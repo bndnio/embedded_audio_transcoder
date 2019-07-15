@@ -3,11 +3,18 @@ typedef enum
 {
     FALSE,
     TRUE
-} BOOL;
+} Bool;
+
+// sign (negative, positive)
+typedef enum
+{
+    NEG,
+    POS
+} Sign;
 
 // sign and magnitude
 typedef struct
 {
-    bool sign;
+    Sign sign;
     unsigned int mag;
-} sign_mag;
+} SignMag;
