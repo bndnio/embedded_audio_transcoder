@@ -12,7 +12,6 @@ uint16_t decode_from_table(char input)
     char shifted_chord = chord << (step + 1);
 
     printf("%d", input);
-
     printf("%d", leading_one);
     printf("%d", shifted_chord);
     printf("%d", trailing_one);
