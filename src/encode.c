@@ -11,7 +11,7 @@ SignMag conv_sign_mag(int16_t to_convert)
 }
 
 // Step 2
-char calc_chord(unsigned int magnitude)
+char calc_chord(uint16_t magnitude)
 {
     if (magnitude & (1 << 12))
         return 0x7;

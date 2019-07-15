@@ -8,7 +8,7 @@
 #include "types.h"
 
 SignMag conv_sign_mag(int16_t to_convert);
-char calc_chord(unsigned int magnitude);
+char calc_chord(uint16_t magnitude);
 char extract_steps(char chord);
 char assemble_codeword(Sign sign, char chord, char step);
 int invert_codeword(char codeword);
