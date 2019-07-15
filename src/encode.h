@@ -7,7 +7,7 @@
 // Project Modules
 #include "types.h"
 
-SignMag conv_sign_mag(uint16_t to_convert);
+SignMag conv_sign_mag(int16_t to_convert);
 char calc_chord(unsigned int magnitude);
 char extract_steps(char chord);
 char assemble_codeword(Sign sign, char chord, char step);

@@ -1,7 +1,7 @@
 #include "encode.h"
 
 // Step 1
-SignMag conv_sign_mag(uint16_t to_convert)
+SignMag conv_sign_mag(int16_t to_convert)
 {
     SignMag sign_mag;
     sign_mag.sign = to_convert >= 0 ? POS : NEG;
