@@ -8,7 +8,6 @@ char calc_chord(unsigned int magnitude);
 char extract_steps(char chord);
 char assemble_codeword(Sign sign, char chord, char step);
 int invert_codeword(char codeword);
-
-char encode(input);
+char encode(char input);
 
 #endif

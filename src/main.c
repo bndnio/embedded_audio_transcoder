@@ -11,7 +11,7 @@
  */
 int main()
 {
-
+    calc_chord(0x1234);
     printf("yea I do stuff");
 
     return 0;
