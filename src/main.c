@@ -3,14 +3,15 @@
 #include <stdlib.h>
 
 // Project Modules
-#include "decode.c"
-#include "encode.c"
+#include "decode.h"
+#include "encode.h"
 
 /**
  * ===== MAIN =====
  */
 int main()
 {
+
     printf("yea I do stuff");
 
     return 0;
