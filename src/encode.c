@@ -51,8 +51,11 @@ int invert_codeword(char codeword)
 /**
  * ===== ENCODE =====
  */
-int endcode()
+char endcode(input)
 {
-
-    return 0;
+    SignMag sign_mag = conv_sign_mag(input);
+    char chord = calc_chord(sign_mag.mag);
+    char step = extract_steps(chord);
+    char codeword = assemble_codeword(sign_mag.step, chord, step);
+    return invert_codeword(codeword);
 }
