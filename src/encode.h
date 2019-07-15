@@ -1,8 +1,11 @@
 #ifndef encode_h
 #define encode_h
 
-#include "types.h"
+// System Libraries
 #include <stdint.h>
+
+// Project Modules
+#include "types.h"
 
 SignMag conv_sign_mag(uint16_t to_convert);
 char calc_chord(unsigned int magnitude);

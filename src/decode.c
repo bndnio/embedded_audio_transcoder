@@ -1,4 +1,3 @@
-// Self Header
 #include "decode.h"
 
 // Step 1

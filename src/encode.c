@@ -1,4 +1,3 @@
-// Self Header
 #include "encode.h"
 
 // Step 1
