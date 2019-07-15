@@ -2,7 +2,8 @@
 #define decode_h
 
 #include "types.h"
+#include <stdint.h>
 
-char decode_from_table(char input);
+uint16_t decode_from_table(char input);
 
 #endif
