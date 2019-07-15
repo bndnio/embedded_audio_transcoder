@@ -5,6 +5,7 @@
 // Project Modules
 #include "decode.h"
 #include "encode.h"
+#include "wav.h"
 
 /**
  * ===== MAIN =====
