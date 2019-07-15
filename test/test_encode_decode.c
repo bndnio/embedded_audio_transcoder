@@ -9,9 +9,8 @@
 
 
 int test_encode() {
-    char encoded = encode(0b0101010101010);
-    printf("%d\n", encoded);
-    assert(encoded == 0b1110101);
+    char encoded = encode(0b01101010101010);
+    assert(encoded == 0b00000101);
 }
 
 /**
@@ -20,7 +19,7 @@ int test_encode() {
 int main()
 {
     test_encode();
-
+    printf("\n------------ALL TESTS PASSED-------------\n\n");
     return 0;
 
 }

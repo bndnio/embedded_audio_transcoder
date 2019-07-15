@@ -30,15 +30,16 @@ char calc_chord(uint16_t magnitude)
 }
 
 // Step 3
-char extract_steps(char chord)
+char extract_steps(uint16_t input, char chord)
 {
-    return 0x0F & chord;
+    return (input >> (chord + 1)) & 0xF;
 }
 
 // Step 4
 char assemble_codeword(Sign sign, char chord, char step)
 {
-    return (char)sign << 7 | chord << 4 | step;
+    char code_word = (char)sign << 7 | chord << 4 | step;
+    return code_word;
 }
 
 // Step 5
@@ -54,7 +55,7 @@ char encode(uint16_t input)
 {
     SignMag sign_mag = conv_sign_mag(input);
     char chord = calc_chord(sign_mag.mag);
-    char step = extract_steps(chord);
+    char step = extract_steps(input, chord);
     char codeword = assemble_codeword(sign_mag.sign, chord, step);
     return invert_codeword(codeword);
 }
