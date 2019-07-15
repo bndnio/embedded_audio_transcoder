@@ -1,19 +1,24 @@
 .PHONY: all test clean
 
-mu:
-	arm-linux-gcc -c src/encode.c
-	arm-linux-gcc -c src/decode.c
-	arm-linux-gcc -c src/wav.c
-	arm-linux-gcc -static decode.o encode.o wav.o -o main.exe src/main.c
+CC=arm-linux-gcc
+CFLAGS = -Wall -static
 
-test:
-    arm-linux-gcc -c src/encode.c
-    arm-linux-gcc -c src/decode.c
-    arm-linux-gcc -static decode.o encode.o -o test.exe test/test_encode_decode.c
+SRC_FILES:=$(wildcard src/*.c)
+TEST_FILES:=$(wildcard test/*.c)
+SRC_OBJS:=$(SRC_FILES:%.c=%.o)
+TEST_OBJS:=$(TEST_FILES:%.c=%.o)
+
+all:$(SRC_FILES)
+	$(CC) $(SRC_FILES) -o main.exe
+
+test:$(TEST_FILES)
+	$(CC) $(TEST_FILES) -o test.exe
+
+%.o: %.c
+	$(CC) $(CFLAGS) -o $@ $<
 
 clean:
-	rm -f encode.o
-	rm -f decode.o
-	rm -f wav.o
+	rm -f $(SRC_OBJS)
+	rm -f $(TEST_OBJS)
 	rm -f main.exe
 	rm -f test.exe
