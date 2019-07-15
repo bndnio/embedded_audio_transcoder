@@ -3,5 +3,6 @@
 
 #include "types.h"
 
+char decode_from_table(char input);
 
 #endif
