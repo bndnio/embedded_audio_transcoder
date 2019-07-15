@@ -1,19 +1,19 @@
 // boolean
-typedef enum
+typedef enum Bool
 {
     FALSE,
     TRUE
 } Bool;
 
 // sign (negative, positive)
-typedef enum
+typedef enum Sign
 {
     NEG,
     POS
 } Sign;
 
 // sign and magnitude
-typedef struct
+typedef struct SignMag
 {
     Sign sign;
     unsigned int mag;
