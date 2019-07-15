@@ -26,8 +26,8 @@ char calc_chord(unsigned int magnitude)
         return 0x3;
     if (magnitude & (1 << 7))
         return 0x2;
-    if (magnitude & (1 << 7))
-        return 0x2;
+    if (magnitude & (1 << 6))
+        return 0x1;
 }
 
 // Step 3
