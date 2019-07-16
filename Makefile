@@ -1,6 +1,5 @@
 .PHONY: all test clean
 
-CC=arm-linux-gcc
 CFLAGS = -Wall -static
 
 SRC_FILES:=$(wildcard src/*.c)
@@ -13,6 +12,7 @@ all:$(SRC_FILES)
 
 test:$(TEST_FILES) $(SRC_FILES)
 	$(CC) $(TEST_FILES) -o test.exe
+
 
 %.o: %.c
 	$(CC) $(CFLAGS) -o $@ $<
