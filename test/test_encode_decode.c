@@ -1,12 +1,4 @@
-// System Libraries
-#include <stdio.h>
-#include <stdlib.h>
-#include <assert.h>
-
-// Project Modules
 #include "main.h"
-#include "../src/decode.h"
-#include "../src/encode.h"
 
 void test_encode()
 {
