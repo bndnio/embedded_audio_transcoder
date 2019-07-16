@@ -11,6 +11,9 @@
 int test_encode() {
     char encoded = encode(0b01101010101010);
     assert(encoded == 0b00000101);
+
+    encoded = encode(0b00011110000001);
+    assert(encoded == 0b0100001);
 }
 
 /**
