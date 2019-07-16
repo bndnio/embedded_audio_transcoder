@@ -1,5 +1,8 @@
 .PHONY: all test clean
 
+CC=arm-linux-gcc
+CFLAGS = -Wall -static
+
 SRC_FILES:=$(wildcard src/*.c)
 TEST_FILES:=$(filter-out src/main.c,$(wildcard test/*.c) $(SRC_FILES))
 SRC_OBJS:=$(SRC_FILES:%.c=%.o)
@@ -13,3 +16,9 @@ test:$(TEST_FILES) $(SRC_FILES)
 
 %.o: %.c
 	$(CC) $(CFLAGS) -o $@ $<
+
+clean:
+	rm -f $(SRC_OBJS)
+	rm -f $(TEST_OBJS)
+	rm -f main.exe
+	rm -f test.exe
