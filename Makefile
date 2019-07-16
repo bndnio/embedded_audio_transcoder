@@ -1,21 +1,24 @@
 .PHONY: all test clean
 
 CC=arm-linux-gcc
-CFLAGS = -Wall -static
+CFLAGS = -Wall
 
-SRC_FILES:=$(wildcard src/*.c)
-TEST_FILES:=$(filter-out src/main.c,$(wildcard test/*.c) $(SRC_FILES))
-SRC_OBJS:=$(SRC_FILES:%.c=%.o)
-TEST_OBJS:=$(TEST_FILES:%.c=%.o)
+SRC_FILES:=$(filter-out src/main.c,$(wildcard src/*.c))
+TEST_FILES:=$(filter-out test/main.c,$(wildcard test/*.c))
+SRC_OBJS:=$(SRC_FILES:src/%.c=%.o)
+TEST_OBJS:=$(TEST_FILES:test/%.c=%.o)
 
-all:$(SRC_FILES)
-	$(CC) $(SRC_FILES) -o main.exe
+%.o: src/%.c
+	$(CC) -c $(CFLAGS) -o $@ $<
 
-test:$(TEST_FILES) $(SRC_FILES)
-	$(CC) $(TEST_FILES) -o test.exe
+%.o: test/%.c
+	$(CC) -c $(CFLAGS) -o $@ $<
 
-%.o: %.c
-	$(CC) $(CFLAGS) -o $@ $<
+all: $(SRC_OBJS)
+	$(CC) -static $(SRC_OBJS) -o main.exe src/main.c
+
+test: $(TEST_OBJS) $(SRC_OBJS)
+	$(CC) -static $(TEST_OBJS) $(SRC_OBJS) -o test.exe test/main.c
 
 clean:
 	rm -f $(SRC_OBJS)
