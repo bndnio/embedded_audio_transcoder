@@ -1,4 +1,4 @@
-#include "main.h"
+#include "test.h"
 
 /**
  * ===== MAIN =====
@@ -7,6 +7,6 @@ int main()
 {
     test_encode();
     test_decode();
-    printf("\n------------ALL TESTS PASSED------------\n\n");
+    check_summary();
     return 0;
 }

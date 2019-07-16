@@ -4,6 +4,7 @@
 #include <assert.h>
 
 // Project Modules
+#include "helpers/helpers.h"
 #include "../src/decode.h"
 #include "../src/encode.h"
 

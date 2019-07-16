@@ -1,20 +1,27 @@
-#include "main.h"
+#include "test.h"
 
 void test_encode()
 {
-    char encoded = encode(0b01101010101010);
-    assert(encoded == 0b00000101);
+    check_equal(
+        "0b00000101 == encode(0b01101010101010)",
+        0b00000101,
+        encode(0b01101010101010));
 
-    encoded = encode(0b00011110000001);
-    assert(encoded == 0b0100001);
+    check_equal(
+        "0b0100001 == encode(0b00011110000001)",
+        0b0100001,
+        encode(0b00011110000001));
 }
 
 void test_decode()
 {
-    uint16_t decoded = decode(0b00000101);
-    assert(decoded == 0b11111111110100);
+    check_equal(
+        "0b11111111110100 == decode(0b00000101)",
+        0b11111111110100,
+        decode(0b00000101));
 
-    //    decoded = decode(0b0100001);
-    //    printf("%d\n", decoded);
-    //    assert(decoded == 0b111110111001);
+    check_equal(
+        "0b111110111001 == decode(0b0100001)",
+        0b111110111001,
+        decode(0b0100001));
 }
