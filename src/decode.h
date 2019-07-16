@@ -8,6 +8,6 @@
 // Project Modules
 #include "types.h"
 
-uint16_t decode_from_table(char input);
+uint16_t decode(char input);
 
 #endif

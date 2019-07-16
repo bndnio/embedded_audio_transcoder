@@ -27,6 +27,7 @@ char calc_chord(uint16_t magnitude)
         return 0x2;
     if (magnitude & (1 << 6))
         return 0x1;
+    return 0;
 }
 
 // Step 3

@@ -42,7 +42,7 @@ void encode_decode_wav(char *filename)
 
     uint16_t xfer;
     char encoded_xfer;
-    char decoded_xfer;
+    uint16_t decoded_xfer;
     // Write file header across both output files
     unsigned int i;
     for (i = 0; i < 22; i++)
