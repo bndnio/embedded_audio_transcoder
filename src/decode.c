@@ -7,9 +7,9 @@ uint16_t decode_from_table(char input)
     char step = 0xF & input;
     char chord = 0x7 & (input >> 4);
 
-    char leading_one = 0x01 << (5 + step);
+    uint16_t leading_one = 0x01 << (5 + chord);
     char trailing_one = 0x01 << chord;
-    char shifted_chord = step << (chord + 1);
+    uint16_t shifted_chord = step << (chord + 1);
 
     uint16_t decoded = sign | leading_one | shifted_chord | trailing_one;
 

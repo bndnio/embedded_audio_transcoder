@@ -39,7 +39,7 @@ char extract_steps(uint16_t input, char chord)
 // Step 4
 char assemble_codeword(Sign sign, char chord, char step)
 {
-    char code_word = (char)sign << 7 | chord << 4 | step;
+    char code_word = (char)~sign << 7 | chord << 4 | step;
     return code_word;
 }
 

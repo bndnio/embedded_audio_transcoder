@@ -38,7 +38,7 @@ void check_equal(char *msg, uint16_t param1, uint16_t param2)
     {
         printf(" \033[1;31mFailed \033[0;31m -- Expected ");
         puts_b16(param1);
-        printf(", but got ");
+        printf(",\n\t     but got ");
         puts_b16(param2);
         printf(" \033[0m\n\n");
     }
