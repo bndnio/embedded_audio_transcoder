@@ -13,3 +13,7 @@ void puts_b32(uint32_t value);
 void puts_b16(uint16_t value);
 void puts_b14(uint16_t value);
 void puts_b8(uint8_t value);
+
+// test_each
+void test_each_encode(char *msg, uint32_t param1, uint32_t param2);
+void test_each_decode(char *msg, uint32_t param1, uint32_t param2);
