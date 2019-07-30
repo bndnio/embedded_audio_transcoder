@@ -1,5 +1,5 @@
-#ifndef decode_h
-#define decode_h
+#ifndef decode_v1_h
+#define decode_v1_h
 
 // System Libraries
 #include <stdio.h>

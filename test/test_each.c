@@ -22,4 +22,10 @@ void test_each_decode(char *msg, uint32_t param1, uint32_t param2)
         param1,
         decode(param2),
         puts_b14);
+
+    check_equal(
+        msg,
+        param1,
+        decode_v1(param2),
+        puts_b14);
 }
