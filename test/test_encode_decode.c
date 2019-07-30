@@ -16,6 +16,11 @@ void test_encode()
         "0b0110100 == encode(0b00000001011100)",
         0b01101000,
         encode(0b00000001011100));
+
+    check_equal(
+        "0b1110100 == encode(0b10000001011100)",
+        0b11101000,
+        encode(0b10000001011100));
 }
 
 void test_decode()
@@ -34,4 +39,9 @@ void test_decode()
         "0b00011001111111 == decode(0b01111001)",
         0b00011001111111,
         decode(0b01111001));
+
+    check_equal(
+        "0b10011001111111 == decode(0b11111001)",
+        0b10011001111111,
+        decode(0b11111001));
 }
