@@ -31,7 +31,7 @@ int check_exp(char *msg, int expression)
     return expression;
 }
 
-void check_equal(char *msg, uint32_t param1, uint32_t param2, void (*print)())
+void check_equal(char *msg, uint32_t param1, uint32_t param2, void (*print)(uint32_t))
 {
     int result = check_exp(msg, param1 == param2);
     if (result != 1)
