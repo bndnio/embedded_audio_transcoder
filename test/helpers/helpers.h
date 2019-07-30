@@ -18,3 +18,4 @@ void puts_b14(uint16_t value);
 void puts_b8(uint8_t value);
 
 #endif
+
