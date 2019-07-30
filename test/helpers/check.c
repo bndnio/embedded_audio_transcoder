@@ -37,9 +37,9 @@ void check_equal(char *msg, uint32_t param1, uint32_t param2, void (*print)())
     if (result != 1)
     {
         printf(" \033[1;31mFailed \033[0;31m -- Expected ");
-        print(param1);
+        (*print)(param1);
         printf(",\n\t     but got ");
-        print(param2);
+        (*print)(param2);
         printf(" \033[0m\n\n");
     }
 }

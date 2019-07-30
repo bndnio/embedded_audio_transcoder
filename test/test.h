@@ -1,3 +1,6 @@
+#ifndef test_h
+#define test_h
+
 // System Libraries
 #include <stdio.h>
 #include <stdlib.h>
@@ -8,6 +11,12 @@
 #include "../src/decode.h"
 #include "../src/encode.h"
 
+// test_each
+void test_each_encode(char *msg, uint32_t param1, uint32_t param2);
+void test_each_decode(char *msg, uint32_t param1, uint32_t param2);
+
 // test_encode_decode
 void test_encode();
 void test_decode();
+
+#endif
