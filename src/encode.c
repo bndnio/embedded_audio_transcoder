@@ -1,11 +1,11 @@
 #include "encode.h"
 
 // Step 1
-SignMag conv_sign_mag(int16_t to_convert)
+SignMag conv_sign_mag(uint16_t to_convert)
 {
     SignMag sign_mag;
-    sign_mag.sign = to_convert >= 0 ? POS : NEG;
-    sign_mag.mag = to_convert >= 0 ? to_convert : -to_convert;
+    sign_mag.sign = (to_convert & 0x2000) == 0x2000 ? NEG : POS; // Is the sign bit 1?
+    sign_mag.mag = to_convert & 0x1FFF;                          // Grab the rest of the magnitude
 
     return sign_mag;
 }
