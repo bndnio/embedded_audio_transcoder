@@ -31,15 +31,15 @@ int check_exp(char *msg, int expression)
     return expression;
 }
 
-void check_equal(char *msg, uint16_t param1, uint16_t param2)
+void check_equal(char *msg, uint32_t param1, uint32_t param2, void (*print)())
 {
     int result = check_exp(msg, param1 == param2);
     if (result != 1)
     {
         printf(" \033[1;31mFailed \033[0;31m -- Expected ");
-        puts_b16(param1);
+        print(param1);
         printf(",\n\t     but got ");
-        puts_b16(param2);
+        print(param2);
         printf(" \033[0m\n\n");
     }
 }
