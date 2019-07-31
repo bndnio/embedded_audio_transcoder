@@ -1,5 +1,5 @@
-#ifndef encode_v1_h
-#define encode_v1_h
+#ifndef encode_v2_h
+#define encode_v2_h
 
 // System Libraries
 #include <stdint.h>

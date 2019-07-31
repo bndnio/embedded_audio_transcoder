@@ -5,6 +5,6 @@
 #include <stdio.h>
 #include <stdint.h>
 
-uint16_t decode_v2(char input);
+uint16_t decode_v2(register char input);
 
 #endif
