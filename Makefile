@@ -11,7 +11,7 @@ TEST_HELPER_FILES:=$(wildcard test/helpers/*.c)
 
 SRC_OBJS:=$(SRC_FILES:src/%.c=%.o)
 OPT_1_OBJS=$(OPT_1_FILES:src_opt1/%.c=%.o)
-OPT_2_OBJS:=$(OPT_2_FILES: src_opt_2/*.c=%.o)
+OPT_2_OBJS:=$(OPT_2_FILES:src_opt_2/*.c=%.o)
 TEST_OBJS:=$(TEST_FILES:test/%.c=%.o)
 TEST_HELPER_OBJS:=$(TEST_HELPER_FILES:test/helpers/%.c=%.o)
 
@@ -41,5 +41,6 @@ clean:
 	rm -f $(TEST_OBJS)
 	rm -f $(TEST_HELPER_OBJS)
 	rm -f $(OPT_1_OBJS)
+	rm -f $(OPT_2_OBJS)
 	rm -f main.exe
 	rm -f test.exe
