@@ -3,27 +3,29 @@
 /**
  * ===== ENCODE =====
  */
+m
 char encode_v1(uint16_t input)
 {
-    char chord;
-    if (input & (1 << 12))
+    uint16_t sign = (input & 0x2000) == 0x2000 ? 0 : 1;
+    uint16_t mag = input & 0x1FFF;
+
+    char chord = 0;
+
+    if (mag & (1 << 12))
         chord =  0x7;
-    if (input & (1 << 11))
-        chord = 0x6;
-    if (input & (1 << 10))
+    else if (mag & (1 << 11))
+        chord =  0x6;
+    else if (mag & (1 << 10))
         chord = 0x5;
-    if (input & (1 << 9))
+    else if (mag & (1 << 9))
         chord = 0x4;
-    if (input & (1 << 8))
+    else if (mag & (1 << 8))
         chord = 0x3;
-    if (input & (1 << 7))
+    else if (mag & (1 << 7))
         chord = 0x2;
-    if (input & (1 << 6))
+    else if (mag & (1 << 6))
         chord = 0x1;
 
-    char step = (input >> (chord + 1)) & 0xF;
-
-
-    return ~(((char)(input & 0x2000)) << 7 | chord << 4 | step);
-
+    char step = (mag >> (chord + 1)) & 0xF;
+    return ~(((char)(sign) << 7 | chord << 4 | step));
 }
