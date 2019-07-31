@@ -2,7 +2,6 @@
 #define decode_h
 
 // System Libraries
-#include <stdio.h>
 #include <stdint.h>
 
 // Project Modules
