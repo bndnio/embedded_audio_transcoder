@@ -27,7 +27,7 @@ TEST_HELPER_OBJS:=$(TEST_HELPER_FILES:test/helpers/%.c=%.o)
 %.o: src_opt1/%.c
 	$(CC) -c $(CFLAGS) -o $@ $<
 
-%.o: src_opt_2/%.c
+%.o: src_opt2/%.c
 	$(CC) -c $(CFLAGS) -o $@ $<
 
 all: $(SRC_OBJS)
