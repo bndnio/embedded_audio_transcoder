@@ -26,11 +26,6 @@ void test_encode()
             "0b01110000 == encode(0b0000000011110)",
             0b01110000,
             0b0000000011110);
-
-    test_each_encode(
-            "0b01110000 == encode(0b0000000001110)",
-            0b01110000,
-            0b0000000001110);
 }
 
 void test_decode()
