@@ -1,11 +1,11 @@
-#include "decode_v1.h"
+#include "decode_v2.h"
 
 /**
  * ===== DECODE =====
  */
 
 // Step 1
-uint16_t decode_v1(register char input)
+uint16_t decode_v2(register char input)
 {
     register char chord = 0x7 & (input >> 4);
     return ~(

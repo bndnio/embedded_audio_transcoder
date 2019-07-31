@@ -4,12 +4,12 @@ CC=arm-linux-gcc
 CFLAGS = -Wall
 
 SRC_FILES:=$(filter-out src/main.c,$(wildcard src/*.c))
-OPT_1_FILES:=$(wildcard optimized_version_1/*.c)
+OPT_1_FILES:=$(wildcard src_opt1/*.c)
 TEST_FILES:=$(filter-out test/main.c,$(wildcard test/*.c))
 TEST_HELPER_FILES:=$(wildcard test/helpers/*.c)
 
 SRC_OBJS:=$(SRC_FILES:src/%.c=%.o)
-OPT_1_OBJS=$(OPT_1_FILES:optimized_version_1/%.c=%.o)
+OPT_1_OBJS=$(OPT_1_FILES:src_opt1/%.c=%.o)
 TEST_OBJS:=$(TEST_FILES:test/%.c=%.o)
 TEST_HELPER_OBJS:=$(TEST_HELPER_FILES:test/helpers/%.c=%.o)
 
@@ -22,7 +22,7 @@ TEST_HELPER_OBJS:=$(TEST_HELPER_FILES:test/helpers/%.c=%.o)
 %.o: test/helpers/%.c
 	$(CC) -c $(CFLAGS) -o $@ $<
 
-%.o: optimized_version_1/%.c
+%.o: src_opt1/%.c
 	$(CC) -c $(CFLAGS) -o $@ $<
 
 all: $(SRC_OBJS)
@@ -33,6 +33,7 @@ test: $(TEST_OBJS) $(TEST_HELPER_OBJS) $(SRC_OBJS) $(OPT_1_OBJS)
 
 clean:
 	rm -f $(SRC_OBJS)
+	rm -f $(OPT_1_FILES)
 	rm -f $(TEST_OBJS)
 	rm -f $(TEST_HELPER_OBJS)
 	rm -f $(OPT_1_OBJS)

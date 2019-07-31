@@ -11,8 +11,8 @@
 #include "../src/decode.h"
 #include "../src/encode.h"
 
-#include "../optimized_version_1/encode_v1.h"
-#include "../optimized_version_1/decode_v1.h"
+#include "../src_opt1/encode_v1.h"
+#include "../src_opt1/decode_v1.h"
 
 // test_each
 void test_each_encode(char *msg, uint32_t param1, uint32_t param2);
