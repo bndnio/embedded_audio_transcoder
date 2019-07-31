@@ -1,4 +1,7 @@
 
+### Project Specific ###
+*.wav
+
 # Created by https://www.gitignore.io/api/c,c++,code,clion,macos,windows,intellij
 # Edit at https://www.gitignore.io/?templates=c,c++,code,clion,macos,windows,intellij
 

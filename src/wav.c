@@ -2,41 +2,45 @@
 
 void encode_decode_wav(char *filename)
 {
+
     FILE *ifp, *eofp, *dofp;
 
-    int output_filename_len = strlen(filename) + sizeof("_xxx.wav");
+    int input_filename_len = strlen(filename) + sizeof(".wav") + 1;
+    int output_filename_len = strlen(filename) + sizeof("_xxx.wav") + 1;
 
-    char encodedFilename[output_filename_len];
-    strcat(encodedFilename, filename);
-    strcat(encodedFilename, "_enc.wav");
+    char input_filename[input_filename_len];
+    strcpy(input_filename, filename);
+    strcat(input_filename, ".wav\0");
 
-    char decodedFilename[output_filename_len];
-    strcat(encodedFilename, filename);
-    strcat(encodedFilename, "_dec.wav");
+    char encoded_filename[output_filename_len];
+    strcpy(encoded_filename, filename);
+    strcat(encoded_filename, "_enc.wav\0");
 
-    ifp = fopen(filename, "rb");
+    char decoded_filename[output_filename_len];
+    strcpy(decoded_filename, filename);
+    strcat(decoded_filename, "_dec.wav\0");
+
+    ifp = fopen(input_filename, "rb");
 
     if (ifp == NULL)
     {
-        fprintf(stderr, "Can't open input file in.list!\n");
+        fprintf(stderr, "Can't open input file: %s\n", input_filename);
         exit(1);
     }
 
-    eofp = fopen(encodedFilename, "wb");
+    eofp = fopen(encoded_filename, "wb");
 
     if (eofp == NULL)
     {
-        fprintf(stderr, "Can't open encoded output file %s!\n",
-                encodedFilename);
+        fprintf(stderr, "Can't open encoded output file %s\n", encoded_filename);
         exit(1);
     }
 
-    dofp = fopen(decodedFilename, "wb");
+    dofp = fopen(decoded_filename, "wb");
 
     if (dofp == NULL)
     {
-        fprintf(stderr, "Can't open decoded output file %s!\n",
-                decodedFilename);
+        fprintf(stderr, "Can't open decoded output file %s\n", decoded_filename);
         exit(1);
     }
 
