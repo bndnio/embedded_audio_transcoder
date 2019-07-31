@@ -35,7 +35,7 @@ decode_from_table:
         mov     r3, r3, lsr #4
         and     r3, r3, #255
         and     r3, r3, #7
-        b    r3, [fp, #-15]
+        strb    r3, [fp, #-15]
         ldrb    r3, [fp, #-17]  @ zero_extendqisi2
         mov     r3, r3, asl #13
         strh    r3, [fp, #-14]  @ movhi
