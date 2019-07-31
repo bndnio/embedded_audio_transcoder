@@ -35,5 +35,6 @@ clean:
 	rm -f $(SRC_OBJS)
 	rm -f $(TEST_OBJS)
 	rm -f $(TEST_HELPER_OBJS)
+	rm -f $(OPT_1_OBJS)
 	rm -f main.exe
 	rm -f test.exe

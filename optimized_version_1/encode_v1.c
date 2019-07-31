@@ -3,7 +3,7 @@
 /**
  * ===== ENCODE =====
  */
-m
+
 char encode_v1(uint16_t input)
 {
     uint16_t sign = (input & 0x2000) == 0x2000 ? 0 : 1;
