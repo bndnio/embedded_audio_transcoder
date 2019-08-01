@@ -11,8 +11,8 @@ typedef enum Bool
 // sign (negative, positive)
 typedef enum Sign
 {
+    NEG,
     POS,
-    NEG
 } Sign;
 
 // sign and magnitude

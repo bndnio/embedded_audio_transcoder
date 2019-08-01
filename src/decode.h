@@ -7,6 +7,6 @@
 // Project Modules
 #include "types.h"
 
-uint16_t decode(char input);
+int16_t decode(char input);
 
 #endif

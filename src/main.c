@@ -13,7 +13,8 @@
 int main()
 {
     calc_chord(0x1234);
-    printf("yea I do stuff");
+    printf("yea I do stuff\n");
+    encode_decode_wav("./wow");
 
     return 0;
 }

@@ -1,11 +1,19 @@
 #include "encode.h"
 
 // Step 1
-SignMag conv_sign_mag(uint16_t to_convert)
+SignMag conv_sign_mag(int16_t to_convert)
 {
+    const uint16_t MAX_MAG = 8159;
     SignMag sign_mag;
-    sign_mag.sign = (to_convert & 0x2000) == 0x2000 ? NEG : POS; // Is the sign bit 1?
-    sign_mag.mag = to_convert & 0x1FFF;                          // Grab the rest of the magnitude
+
+    sign_mag.sign = to_convert < 0 ? NEG : POS;                                 // Get the sign bit
+    sign_mag.mag = ((to_convert < 0 ? ~to_convert : to_convert) >> 2) & 0x1FFF; // Grab the rest of the magnitude
+
+    if (sign_mag.mag > MAX_MAG)
+    {
+        sign_mag.mag = MAX_MAG;
+    }
+    sign_mag.mag += 33;
 
     return sign_mag;
 }
@@ -52,7 +60,7 @@ int invert_codeword(char codeword)
 /**
  * ===== ENCODE =====
  */
-char encode(uint16_t input)
+char encode(int16_t input)
 {
     SignMag sign_mag = conv_sign_mag(input);
     char chord = calc_chord(sign_mag.mag);
