@@ -17,6 +17,8 @@
 #include "../src_opt2/encode_v2.h"
 #include "../src_opt2/decode_v2.h"
 
+#include "../src_opt3/encode_v3.h"
+
 // test_each
 void test_each_encode(char *msg, uint32_t param1, uint32_t param2);
 void test_each_decode(char *msg, uint32_t param1, uint32_t param2);
