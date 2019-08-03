@@ -19,7 +19,7 @@ typedef enum Sign
 typedef struct SignMag
 {
     Sign sign;
-    unsigned int mag;
+    uint16_t mag;
 } SignMag;
 
 #endif

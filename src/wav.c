@@ -102,13 +102,13 @@ void encode_decode_wav(char *filename)
         {
             printf("\ni: ");
             puts_bs16(xfer);
-            printf("\ne: ");
-            puts_bs8(encoded_xfer);
+            // printf("\ne: ");
+            // puts_bs8(encoded_xfer);
             printf("\nd: ");
             puts_bs16(decoded_xfer);
             printf("\n----\n");
-            printf("sizeof xfer: %u\n", sizeof(xfer));
-            printf("sizeof decoded_xfer: %u\n", sizeof(decoded_xfer));
+            // printf("sizeof xfer: %u\n", sizeof(xfer));
+            // printf("sizeof decoded_xfer: %u\n", sizeof(decoded_xfer));
         }
         fwrite(&encoded_xfer, sizeof(encoded_xfer), 1, eofp);
         fwrite(&decoded_xfer, sizeof(decoded_xfer), 1, dofp);
