@@ -14,7 +14,7 @@ int main()
 {
     calc_chord(0x1234);
     printf("yea I do stuff\n");
-    encode_decode_wav("./wow");
+    encode_decode_wav("./guac");
 
     return 0;
 }
