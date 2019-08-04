@@ -5,8 +5,8 @@
  */
 int main()
 {
-    // test_encode();
-    // test_decode();
+    test_encode();
+    test_decode();
     test_conv_sign_mag();
     test_calc_chord();
     test_extract_steps();
