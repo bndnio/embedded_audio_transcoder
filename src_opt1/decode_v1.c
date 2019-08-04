@@ -5,14 +5,18 @@
  */
 uint16_t decode_v1(register char input)
 {
-    register uint16_t sign = (0x1 & (input >> 7)) ^ 0x1;
-    register uint16_t step = 0xF & input;
-    register uint16_t chord = 0x7 & (input >> 4);
+    input = ~input;
+    register uint16_t sign = ((0x80 & input) >> 7) ^ 0x1;
+    register uint16_t chord =(( 0x70 & input) >> 4);
+    register uint16_t step = (0x0F & input);
+    register uint16_t shifted_bias = 132;
 
-    register uint16_t decoded = (sign << 13) |          // shift sign
-                                (0x01 << (5 + chord)) | // shift leading one
-                                (step << (chord + 1)) | // shift chord
-                                (0x01 << chord);        // shift trailing one
+    register uint16_t leading_one = 0x0001 << (2 + 5 + chord);
+    register uint16_t shifted_step = step << (2 + 1 + chord);
+    register int16_t decoded = leading_one + shifted_step - shifted_bias;
 
-    return ~decoded & 0x3FFF; // invert & mask lest significant 14 bits
+    if (sign == 0) {
+        return -decoded;
+    }
+    return decoded;
 }

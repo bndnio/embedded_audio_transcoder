@@ -15,30 +15,45 @@
 	.type	conv_sign_mag, %function
 conv_sign_mag:
 	@ Function supports interworking.
-	@ args = 0, pretend = 0, frame = 16
+	@ args = 0, pretend = 0, frame = 24
 	@ frame_needed = 1, uses_anonymous_args = 0
 	@ link register save eliminated.
 	str	fp, [sp, #-4]!
 	add	fp, sp, #0
-	sub	sp, sp, #20
-	mov	ip, r0
+	sub	sp, sp, #28
+	str	r0, [fp, #-28]
 	mov	r3, r1
-	strh	r3, [fp, #-14]	@ movhi
-	ldrh	r3, [fp, #-14]
-	and	r3, r3, #8192
+	strh	r3, [fp, #-22]	@ movhi
+	mov	r3, #32512
+	add	r3, r3, #123
+	strh	r3, [fp, #-6]	@ movhi
+	ldrsh	r3, [fp, #-22]
+	mvn	r3, r3
+	mov	r3, r3, lsr #31
+	str	r3, [fp, #-16]
+	ldrsh	r3, [fp, #-22]
 	cmp	r3, #0
-	moveq	r3, #0
-	movne	r3, #1
-	str	r3, [fp, #-12]
-	ldrh	r3, [fp, #-14]
-	mov	r3, r3, asl #19
-	mov	r3, r3, lsr #19
-	str	r3, [fp, #-8]
-	mov	r2, ip
-	sub	r3, fp, #12
+	rsblt	r3, r3, #0
+	mov	r3, r3, asl #16
+	mov	r3, r3, lsr #16
+	strh	r3, [fp, #-12]	@ movhi
+	ldrh	r2, [fp, #-12]
+	ldrh	r3, [fp, #-6]
+	cmp	r3, r2
+	bcs	.L2
+	ldrh	r3, [fp, #-6]	@ movhi
+	strh	r3, [fp, #-12]	@ movhi
+.L2:
+	ldrh	r3, [fp, #-12]
+	add	r3, r3, #132
+	mov	r3, r3, asl #16
+	mov	r3, r3, lsr #16
+	strh	r3, [fp, #-12]	@ movhi
+	ldr	r2, [fp, #-28]
+	sub	r3, fp, #16
 	ldmia	r3, {r0, r1}
 	stmia	r2, {r0, r1}
-	mov	r0, ip
+	ldr	r0, [fp, #-28]
 	add	sp, fp, #0
 	ldmfd	sp!, {fp}
 	bx	lr
@@ -57,64 +72,64 @@ calc_chord:
 	mov	r3, r0
 	strh	r3, [fp, #-6]	@ movhi
 	ldrh	r3, [fp, #-6]
-	and	r3, r3, #4096
+	and	r3, r3, #16384
 	cmp	r3, #0
-	beq	.L4
+	beq	.L5
 	mov	r3, #7
 	str	r3, [fp, #-12]
-	b	.L5
-.L4:
+	b	.L6
+.L5:
+	ldrh	r3, [fp, #-6]
+	and	r3, r3, #8192
+	cmp	r3, #0
+	beq	.L7
+	mov	r3, #6
+	str	r3, [fp, #-12]
+	b	.L6
+.L7:
+	ldrh	r3, [fp, #-6]
+	and	r3, r3, #4096
+	cmp	r3, #0
+	beq	.L8
+	mov	r3, #5
+	str	r3, [fp, #-12]
+	b	.L6
+.L8:
 	ldrh	r3, [fp, #-6]
 	and	r3, r3, #2048
 	cmp	r3, #0
-	beq	.L6
-	mov	r3, #6
+	beq	.L9
+	mov	r3, #4
 	str	r3, [fp, #-12]
-	b	.L5
-.L6:
+	b	.L6
+.L9:
 	ldrh	r3, [fp, #-6]
 	and	r3, r3, #1024
 	cmp	r3, #0
-	beq	.L7
-	mov	r3, #5
+	beq	.L10
+	mov	r3, #3
 	str	r3, [fp, #-12]
-	b	.L5
-.L7:
+	b	.L6
+.L10:
 	ldrh	r3, [fp, #-6]
 	and	r3, r3, #512
 	cmp	r3, #0
-	beq	.L8
-	mov	r3, #4
+	beq	.L11
+	mov	r3, #2
 	str	r3, [fp, #-12]
-	b	.L5
-.L8:
+	b	.L6
+.L11:
 	ldrh	r3, [fp, #-6]
 	and	r3, r3, #256
 	cmp	r3, #0
-	beq	.L9
-	mov	r3, #3
-	str	r3, [fp, #-12]
-	b	.L5
-.L9:
-	ldrh	r3, [fp, #-6]
-	and	r3, r3, #128
-	cmp	r3, #0
-	beq	.L10
-	mov	r3, #2
-	str	r3, [fp, #-12]
-	b	.L5
-.L10:
-	ldrh	r3, [fp, #-6]
-	and	r3, r3, #64
-	cmp	r3, #0
-	beq	.L11
+	beq	.L12
 	mov	r3, #1
 	str	r3, [fp, #-12]
-	b	.L5
-.L11:
+	b	.L6
+.L12:
 	mov	r3, #0
 	str	r3, [fp, #-12]
-.L5:
+.L6:
 	ldr	r3, [fp, #-12]
 	mov	r0, r3
 	add	sp, fp, #0
@@ -139,7 +154,7 @@ extract_steps:
 	strb	r3, [fp, #-7]
 	ldrh	r2, [fp, #-6]
 	ldrb	r3, [fp, #-7]	@ zero_extendqisi2
-	add	r3, r3, #1
+	add	r3, r3, #3
 	mov	r3, r2, asr r3
 	and	r3, r3, #255
 	and	r3, r3, #15
@@ -220,18 +235,16 @@ encode:
 	mov	r3, r0
 	strh	r3, [fp, #-22]	@ movhi
 	sub	r3, fp, #16
-	ldrh	r2, [fp, #-22]
+	ldrsh	r2, [fp, #-22]
 	mov	r0, r3
 	mov	r1, r2
 	bl	conv_sign_mag
-	ldr	r3, [fp, #-12]
-	mov	r3, r3, asl #16
-	mov	r3, r3, lsr #16
+	ldrh	r3, [fp, #-12]
 	mov	r0, r3
 	bl	calc_chord
 	mov	r3, r0
 	strb	r3, [fp, #-7]
-	ldrh	r3, [fp, #-22]
+	ldrh	r3, [fp, #-12]
 	ldrb	r2, [fp, #-7]	@ zero_extendqisi2
 	mov	r0, r3
 	mov	r1, r2

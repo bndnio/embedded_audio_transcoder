@@ -11,6 +11,9 @@
 #include "decode.h"
 #include "encode.h"
 
+#include "../src_opt1/encode_v1.h"
+#include "../src_opt1/decode_v1.h"
+
 // Function Prototypes
 void encode_decode_wav(char *filename);
 
