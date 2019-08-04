@@ -4,6 +4,11 @@ void test_encode()
 {
     test_each_encode(
             "test encode chord 0",
+            0b01110101,
+            0b1111111110101101);
+
+    test_each_encode(
+            "test encode chord 0",
             0b11111111,
             0b0000000000000010);
 

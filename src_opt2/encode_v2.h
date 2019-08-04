@@ -4,6 +4,6 @@
 // System Libraries
 #include <stdint.h>
 
-char encode_v2(uint16_t input);
+char encode_v2(int16_t input);
 
 #endif
